@@ -1,5 +1,5 @@
 #!/bin/zsh
-# caffi
+# caffeinate -d curl
 # $1: team name
 
 user=${SUDO_USER:-${USER}}
@@ -97,19 +97,19 @@ case $1 in
     sudo sh -c "echo \"export PATH='$PATH:$HOME/.rvm/bin'\" >> /Users/$user/.zshrc"
 
     #Xcode 12.5.1
-    if [ ! -d "/Applications/Xcode.app" ]; then
-      echo "🟡🟡🟡 Installing Xcode 12.5.1 🟡🟡🟡"
-      xip -x "${pathX}/Xcode_12.5.1.xip"
-    else
-      echo "🟡🟡🟡 Xcode already installed 🟡🟡🟡"
-    fi
+    #if [ ! -d "/Applications/Xcode.app" ]; then
+    #  echo "🟡🟡🟡 Installing Xcode 12.5.1 🟡🟡🟡"
+    #  xip -x "${pathX}/Xcode_12.5.1.xip"
+    #else
+    #  echo "🟡🟡🟡 Xcode already installed 🟡🟡🟡"
+    #fi
     ;;
 
   android)
     ./brew install --cask --force jetbrains-toolbox sourcetree postman sublime-text charles zeplin android-studio
     ./brew install --force openjdk@11
 
-    gem install --user-install applocale
+    gem install applocale
     
     #RVM installation
     ./brew install gnupg
@@ -119,12 +119,12 @@ case $1 in
     sudo sh -c "echo "export PATH='$PATH:$HOME/.rvm/bin'" >> /Users/$user/.zshrc"
 
     #Xcode 12.5.1
-    if [ ! -d "/Applications/Xcode.app" ]; then
-      echo "🟡🟡🟡 Installing Xcode 12.5.1 🟡🟡🟡"
-      xip -x "${pathX}/Xcode_12.5.1.xip"
-    else
-      echo "🟡🟡🟡 Xcode already installed 🟡🟡🟡"
-    fi
+    #if [ ! -d "/Applications/Xcode.app" ]; then
+    #  echo "🟡🟡🟡 Installing Xcode 12.5.1 🟡🟡🟡"
+    #  xip -x "${pathX}/Xcode_12.5.1.xip"
+    #else
+    #  echo "🟡🟡🟡 Xcode already installed 🟡🟡🟡"
+    #fi
     ;;
 
   web)
@@ -150,50 +150,50 @@ echo "✅ Team specific software done ✅ "
 sleep 1
 
 #---------------Readme for user-----------------
-echo "🟡🟡🟡 README.txt 🟡🟡🟡"
-cd "${pathX}"
-case $1 in
-  qa)
-    cp readme/qa.txt /Users/$user/Desktop/
-    mv /Users/$user/Desktop/qa.txt /Users/$user/Desktop/README.txt
-    ;;
-  
-  backend)
-    cp readme/backend.txt /Users/$user/Desktop/
-    mv /Users/$user/Desktop/backend.txt /Users/$user/Desktop/README.txt
-    ;;
-
-  web)
-    cp readme/web.txt /Users/$user/Desktop/
-	  mv /Users/$user/Desktop/web.txt /Users/$user/Desktop/README.txt
-    ;;
-
-  ios)
-    cp readme/ios.txt /Users/$user/Desktop/
-	  mv /Users/$user/Desktop/ios.txt /Users/$user/Desktop/README.txt
-    ;;
-
-  android)
-    cp readme/android.txt /Users/$user/Desktop/
-	  mv /Users/$user/Desktop/android.txt /Users/$user/Desktop/README.txt
-    ;;
-
-  design)
-    cp readme/design.txt /Users/$user/Desktop/
-    mv /Users/$user/Desktop/design.txt /Users/$user/Desktop/README.txt
-    ;;
-
-  itba)
-    cp readme/itba.txt /Users/$user/Desktop/
-    mv /Users/$user/Desktop/itba.txt /Users/$user/Desktop/README.txt
-  ;;
-
-  *)
-    echo "🔴 No team selected 🔴"
-    ;;
-esac
-echo "✅ README.txt done ✅ "
-
+#echo "🟡🟡🟡 README.txt 🟡🟡🟡"
+#cd "${pathX}"
+#case $1 in
+#  qa)
+#    cp readme/qa.txt /Users/$user/Desktop/
+#    mv /Users/$user/Desktop/qa.txt /Users/$user/Desktop/README.txt
+#    ;;
+#  
+#  backend)
+#    cp readme/backend.txt /Users/$user/Desktop/
+#    mv /Users/$user/Desktop/backend.txt /Users/$user/Desktop/README.txt
+#    ;;
+#
+#  web)
+#    cp readme/web.txt /Users/$user/Desktop/
+#	  mv /Users/$user/Desktop/web.txt /Users/$user/Desktop/README.txt
+#    ;;
+#
+#  ios)
+#    cp readme/ios.txt /Users/$user/Desktop/
+#	  mv /Users/$user/Desktop/ios.txt /Users/$user/Desktop/README.txt
+#    ;;
+#
+#  android)
+#    cp readme/android.txt /Users/$user/Desktop/
+#	  mv /Users/$user/Desktop/android.txt /Users/$user/Desktop/README.txt
+#    ;;
+#
+#  design)
+#    cp readme/design.txt /Users/$user/Desktop/
+#    mv /Users/$user/Desktop/design.txt /Users/$user/Desktop/README.txt
+#    ;;
+#
+#  itba)
+#    cp readme/itba.txt /Users/$user/Desktop/
+#    mv /Users/$user/Desktop/itba.txt /Users/$user/Desktop/README.txt
+#  ;;
+#
+#  *)
+#    echo "🔴 No team selected 🔴"
+#    ;;
+#esac
+#echo "✅ README.txt done ✅ "
+#
 #-----------------Remove Admin-------------------
 sudo dseditgroup -o edit -d $user -t user admin
 
