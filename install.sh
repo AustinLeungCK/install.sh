@@ -31,13 +31,14 @@ if [ ! -f "/Users/$user/homebrew/bin/brew" ];then
   cd /Users/$user/
   mkdir -p homebrew && curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C homebrew
   chown -R $user /Users/$user/homebrew
-  echo "export PATH=/Users/$user/homebrew/bin:$PATH" >> /Users/$user/.zshrc
+  echo "eval $(/Users/$user/homebrew/bin/brew shellenv)" >> /Users/$user/.zprofile
+  eval $(/Users/$user/homebrew/bin/brew shellenv)
+  #echo "export PATH=/Users/$user/homebrew/bin:$PATH" >> /Users/$user/.zshrc
   echo "✅ homebrew install successfully. ✅ "
+
 else
   echo "✅ homebrew already exists, skipping download.... ✅ "
 fi
-
-sleep 1
 
 #----------------NewEmployeeOnboardGuide.url----------------
 cd /Users/$user/Desktop/
@@ -45,8 +46,6 @@ touch NewEmployeeOnboardGuide.url
 echo "[InternetShortcut]" >> NewEmployeeOnboardGuide.url
 echo "URL=https://shelves.gtomato.com/books/gt-onboarding-user-guide/page/new-employee-onboarding-guide" >> NewEmployeeOnboardGuide.url
 echo "IconIndex=0" >> NewEmployeeOnboardGuide.url
-
-#/bin/zsh "/Volumes/Install macOS Big Sur/install_2.sh" $1
 
 #----------------Essentials installation----------------
 cd /Users/$user/homebrew/bin
@@ -83,6 +82,7 @@ case $1 in
     ./brew install git gradle node@14 docker
     pathN="/Users/${user}/homebrew/opt/node@14/bin:$PATH"
     sudo sh -c "echo 'export PATH=${pathN}' >> ~/.zshrc"
+    brew link --overwrite docker
     ;;
 
   ios)
