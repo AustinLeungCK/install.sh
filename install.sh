@@ -1,6 +1,4 @@
 #!/bin/zsh
-# caffeinate -d curl
-# $1: team name
 
 user=${SUDO_USER:-${USER}}
 
@@ -30,10 +28,10 @@ fi
 if [ ! -f "/Users/$user/homebrew/bin/brew" ];then
   cd /Users/$user/
   mkdir -p homebrew && curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C homebrew
+  
   chown -R $user /Users/$user/homebrew
-  echo "eval $(/Users/$user/homebrew/bin/brew shellenv)" >> /Users/$user/.zprofile
-  eval $(/Users/$user/homebrew/bin/brew shellenv)
-  #echo "export PATH=/Users/$user/homebrew/bin:$PATH" >> /Users/$user/.zshrc
+  export PATH="/Users/$user/homebrew/bin:$PATH" >> /Users/$user/.zshrc
+  
   echo "✅ homebrew install successfully. ✅ "
 
 else
@@ -109,7 +107,7 @@ case $1 in
     ./brew install --cask --force jetbrains-toolbox sourcetree postman sublime-text charles zeplin android-studio
     ./brew install --force openjdk@11
 
-    gem install applocale
+    sudo gem install applocale
     
     #RVM installation
     ./brew install gnupg
@@ -146,8 +144,14 @@ case $1 in
     echo "🔴 No team selected 🔴"
     ;;
 esac
+
 echo "✅ Team specific software done ✅ "
-sleep 1
+
+#-----------------Remove Admin-------------------
+sudo dseditgroup -o edit -d $user -t user admin
+
+echo "🟡🟡🟡 Installation done. Please reboot the machine..... 🟡🟡🟡"
+exit
 
 #---------------Readme for user-----------------
 #echo "🟡🟡🟡 README.txt 🟡🟡🟡"
@@ -194,8 +198,3 @@ sleep 1
 #esac
 #echo "✅ README.txt done ✅ "
 #
-#-----------------Remove Admin-------------------
-sudo dseditgroup -o edit -d $user -t user admin
-
-echo "🟡🟡🟡 Installation done. Please reboot the machine..... 🟡🟡🟡"
-exit
