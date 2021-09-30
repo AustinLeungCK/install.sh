@@ -76,7 +76,7 @@ case $1 in
     ;;
   
   backend)
-    ./brew install --cask --force sourcetree intellij-idea-ce postman docker pgadmin4 oracle-jdk mysqlworkbench cyberduck docker
+    ./brew install --cask --force sourcetree intellij-idea-ce postman docker oracle-jdk mysqlworkbench cyberduck docker
     ./brew install git gradle node@14 docker
     pathN="/Users/${user}/homebrew/opt/node@14/bin:$PATH"
     sudo sh -c "echo 'export PATH=${pathN}' >> ~/.zshrc"
@@ -126,7 +126,7 @@ case $1 in
     ;;
 
   web)
-    ./brew install --cask --force sourcetree postman sublime-text charles zeplin
+    ./brew install --cask --force sourcetree postman sublime-text charles zeplin jetbrains-toolbox
     ./brew install node@14
 
     npm install --global yarn
